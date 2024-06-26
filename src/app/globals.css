@@ -1,3 +1,5 @@
+/* globals.css */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,6 +11,12 @@
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --radius: 0.5rem;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    /* background-color: hsl(var(--background)); */
+    /* color: hsl(var(--foreground)); */
   }
 
   .dark {

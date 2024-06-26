@@ -5,21 +5,20 @@ import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
 const Footer = () => {
     return (
         <>
-            <div className="h-24 flex justify-center items-center bg-yellow-300 text-xl font-semibold p-2">
-                BOOST YOUR SALES: CONTACT US TO SHOWCASE YOUR DISCOUNTS!
-                <div className='ml-2 bg-black text-white p-2 cursor-pointer text-lg font-medium border rounded'>ClICK HERE</div>
-            </div>
+
+
 
             <div className="bg-gray-900 text-white py-10">
+                {/* Logo and Description */}
+                <div className='flex flex-col justify-center items-center mb-8'>
+                    <div className="text-2xl font-bold">R A Z E</div>
+                    <div className="text-gray-400">
+                        Breaking Boundaries
+                    </div>
+                </div>
+
                 <div className="container mx-auto px-5 md:px-20">
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
-                        {/* Logo and Description */}
-                        <div>
-                            <h2 className="text-2xl font-bold text-red-600">YourLogo</h2>
-                            <p className="mt-4 text-gray-400">
-                                Your one-stop shop for the best discounts on all products.
-                            </p>
-                        </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
 
                         {/* Navigation Links */}
                         <div>

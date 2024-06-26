@@ -30,8 +30,8 @@ const Navbar = () => {
     }, []);
 
     return (
-        <div className={`fixed top-0 w-full z-10 transition-all duration-300 ${scrolled ? 'bg-black text-white' : 'bg-transparent text-white'}`}>
-            <div className={`h-12 md:h-20 flex md:justify-between items-center px-4 ${scrolled ? 'border-b border-gray-800' : ''}`}>
+        <div className={`fixed top-0 w-full z-10 transition-all duration-300 ${scrolled ? 'bg-gray-900 text-white' : 'bg-transparent text-white'}`}>
+            <div className={`h-12 md:h-20 flex md:justify-between items-center px-4 ${scrolled ? 'border-b border-gray-700' : ''}`}>
 
                 {/* Mobile Menu Icon */}
                 <div className="md:hidden w-[5%]" onClick={() => setExpandMobileMenu(!expandMobileMenu)}>
