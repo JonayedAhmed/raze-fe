@@ -1,7 +1,17 @@
-import AllProducts from "@/components/AllProducts";
-import HomePageRoundedOptions from "@/components/HomePageRoundedOptions";
+import ProductCard from "@/common/cards/ProductCard";
 import HomepageCarousel from "@/components/HomepageCarousel";
 import Head from "next/head";
+import cloth2 from '../../../public/images/cloth2.png'
+
+const product = {
+  image: cloth2,
+  title: 'Cool T-Shirt',
+  subname: 'Summer Collection',
+  rating: 4,
+  reviews: 120,
+  description: 'A cool t-shirt from the summer collection. Made from 100% cotton.',
+  price: 29.99
+};
 
 export default function Home() {
   return (
@@ -16,12 +26,12 @@ export default function Home() {
         <section aria-label="Carousel">
           <HomepageCarousel />
         </section>
-        <section aria-label="Categories">
-          <HomePageRoundedOptions />
-        </section>
-        <section aria-label="Products">
-          <AllProducts />
-        </section>
+
+
+        <div className="p-4">
+          <ProductCard product={product} />
+        </div>
+
       </main>
     </>
   );

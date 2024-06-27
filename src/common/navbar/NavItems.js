@@ -1,10 +1,4 @@
 import { electronicsData } from '@/data/ElectronicsData'
-import buffet from '../../../public/images/buffet.png'
-import cloth from '../../../public/images/cloth.png'
-import electronics from '../../../public/images/electronics.png'
-import personalCare from '../../../public/images/personalCare.png'
-import shoe from '../../../public/images/shoe.png'
-import { buffetData } from '../../data/BuffetData.js'
 import { clothingData } from '../../data/ClothingData.js'
 import { footwearData } from '../../data/FootwearData.js'
 import { personalCareData } from '../../data/PersonalCareData.js'
@@ -13,33 +7,27 @@ import { personalCareData } from '../../data/PersonalCareData.js'
 // Define array of objects for navbar items with sub-brands
 export const allNavItems = [
     {
-        href: "/footwear",
-        category: "Footwear",
-        categoryImage: shoe,
+        href: "/men",
+        category: "Men",
+        categoryImage: '',
         brands: footwearData?.map(eachFootwearData => eachFootwearData?.brand)
     },
     {
-        href: "/clothing",
-        category: "Clothing",
-        categoryImage: cloth,
+        href: "/women",
+        category: "Women",
+        categoryImage: '',
         brands: clothingData?.map(eachClothingData => eachClothingData?.brand)
     },
     {
-        href: "/electronics",
-        category: "Electronics",
-        categoryImage: electronics,
+        href: "/new-in",
+        category: "New In",
+        categoryImage: '',
         brands: electronicsData?.map(eachElectronicsData => eachElectronicsData?.brand)
     },
     {
-        href: "/personal-care",
-        category: "Personal Care",
-        categoryImage: personalCare,
+        href: "/stores",
+        category: "Stores",
+        categoryImage: '',
         brands: personalCareData?.map(eachPersonalCareData => eachPersonalCareData?.brand)
-    },
-    {
-        href: "/buffet",
-        category: "Buffet",
-        categoryImage: buffet,
-        brands: buffetData?.map(eachBuffetData => eachBuffetData?.brand)
     },
 ];
