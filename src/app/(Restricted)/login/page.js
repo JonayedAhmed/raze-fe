@@ -1,48 +1,61 @@
-// pages/login.js
-import Head from 'next/head';
+'use client'
 
-export default function Login() {
+import Link from 'next/link';
+import { useState } from 'react';
+
+const Login = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleLogin = (e) => {
+        e.preventDefault();
+        // Handle login logic here
+    };
+
     return (
-        <>
-            <Head>
-                <title>Login | YourWebsite</title>
-            </Head>
-            <div className="min-h-screen flex items-center justify-center" style={{ backgroundImage: 'url(/path-to-your-background-image.jpg)' }}>
-                <div className="bg-white bg-opacity-70 backdrop-blur-lg p-8 rounded-xl shadow-md max-w-md w-full">
-                    <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Login to Your Account</h2>
-                    <form>
-                        <div className="mb-4">
-                            <label className="block text-gray-700 font-medium mb-2" htmlFor="email">Email</label>
-                            <input
-                                type="email"
-                                id="email"
-                                className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-400"
-                                placeholder="Enter your email"
-                                required
-                            />
+        <div className="flex justify-center items-center min-h-full my-40">
+            <div className="bg-white p-8 rounded-lg w-full max-w-md">
+                <h2 className="text-5xl font-normal mb-6 text-center text-gray-900">Login</h2>
+                <form onSubmit={handleLogin}>
+                    <div className="mb-4">
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email address</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-900 focus:border-gray-900"
+                            required
+                        />
+                    </div>
+                    <div className="mb-6">
+                        <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-900 focus:border-gray-900"
+                            required
+                        />
+                    </div>
+                    <div className="mb-4 flex justify-between items-center">
+                        <div className='flex'>
+                            <input type="checkbox" id="remember" name="remember" className="h-4 w-4 text-gray-900 focus:ring-gray-900 border-gray-300 rounded" />
+                            <label htmlFor="remember" className="ml-2 block text-sm text-gray-900">Remember me</label>
                         </div>
-                        <div className="mb-6">
-                            <label className="block text-gray-700 font-medium mb-2" htmlFor="password">Password</label>
-                            <input
-                                type="password"
-                                id="password"
-                                className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-400"
-                                placeholder="Enter your password"
-                                required
-                            />
+                        <div>
+                            <Link href="/forgot-password" className="text-sm text-gray-900 hover:underline">Forgot password?</Link>
                         </div>
-                        <button
-                            type="submit"
-                            className="w-full bg-red-600 text-white font-bold py-3 rounded-lg shadow-lg hover:bg-red-700 transition-colors duration-300"
-                        >
-                            Login
-                        </button>
-                    </form>
-                    <p className="text-center text-gray-600 mt-4">
-                        Don't have an account? <a href="/register" className="text-red-500 hover:text-red-700 font-medium">Sign Up</a>
-                    </p>
-                </div>
+                    </div>
+                    <button type="submit" className="w-full py-2 px-4 bg-gray-900 text-white font-semibold rounded-md shadow-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-opacity-50">Login</button>
+                </form>
+                <p className="mt-6 text-center text-sm text-gray-600">Don't have an account? <Link href="/register" className="text-gray-900 hover:underline">Sign up</Link></p>
             </div>
-        </>
+        </div>
     );
-}
+};
+
+export default Login;

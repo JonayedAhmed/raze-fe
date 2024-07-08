@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from "next/link";
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FaFacebook, FaInstagram, FaLinkedin, FaSearch, FaTwitter, FaUser } from 'react-icons/fa';
 import MenuBarsIcon from '../../../public/icons/MenuBarsIcon.svg';
 
@@ -16,23 +16,10 @@ const allNavItems = [
 const Navbar = () => {
     const pathname = usePathname();
     const [expandMobileMenu, setExpandMobileMenu] = useState(false);
-    const [scrolled, setScrolled] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 50);
-        };
-
-        window.addEventListener('scroll', handleScroll);
-
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, []);
 
     return (
-        <div className={`fixed top-0 w-full z-10 transition-all duration-300 ${scrolled ? 'bg-gray-900 text-white' : 'bg-transparent text-white'}`}>
-            <div className={`h-12 md:h-20 flex md:justify-between items-center px-4 ${scrolled ? 'border-b border-gray-700' : ''}`}>
+        <div className="fixed top-0 w-full z-10 bg-gray-900 text-white transition-all duration-300">
+            <div className="h-12 md:h-20 flex md:justify-between items-center px-4 border-b border-gray-700">
 
                 {/* Mobile Menu Icon */}
                 <div className="md:hidden w-[5%]" onClick={() => setExpandMobileMenu(!expandMobileMenu)}>
@@ -55,8 +42,8 @@ const Navbar = () => {
 
                 {/* Search and User Icons */}
                 <div className="flex items-center space-x-10">
-                    <a href="#search" className="text-white hover:text-gray-400"><FaSearch size={20} /></a>
-                    <a href="/login" className="text-white hover:text-gray-400"><FaUser size={20} /></a>
+                    <Link href="/login" className="text-white hover:text-gray-400"><FaSearch size={20} /></Link>
+                    <Link href="/login" className="text-white hover:text-gray-400"><FaUser size={20} /></Link>
                 </div>
             </div>
 

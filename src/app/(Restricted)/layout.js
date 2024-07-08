@@ -1,5 +1,7 @@
 import { Inter } from "next/font/google";
 import "../globals.css";
+import SecondaryNavbar from "@/common/navbar/SecondaryNavbar";
+import Footer from "@/common/footer/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,9 +15,11 @@ export default function LoginLayout({ children }) {
     return (
         <html lang="en">
             <body className={inter.className}>
-                <div>
+                <SecondaryNavbar />
+                <main className="mt-28">
                     {children}
-                </div>
+                </main>
+                <Footer />
             </body>
         </html>
     );
