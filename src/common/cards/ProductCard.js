@@ -27,7 +27,7 @@ const ProductCard = ({ product }) => {
         <p className="text-gray-500 text-lg">{product.subname}</p>
         <div className="flex items-center mt-2 mb-4">
           {[...Array(5)].map((_, index) => (
-            <FaStar key={index} className={`mr-1 ${index < product.rating ? 'text-yellow-500' : 'text-gray-300'}`} />
+            <FaStar key={index} className={`mr-1 ${index < product.rating ? 'text-blue-500' : 'text-gray-300'}`} />
           ))}
           <span className="ml-2 text-gray-500">({product.reviews} reviews)</span>
         </div>
