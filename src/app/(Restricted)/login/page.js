@@ -1,16 +1,48 @@
 'use client'
 
+import { signIn, useSession } from 'next-auth/react';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState, useCallback } from 'react';
 
 const Login = () => {
+
+    const router = useRouter();
+    const session = useSession();
+
+    const [error, setError] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleLogin = (e) => {
+    useEffect(() => {
+        if (session?.data && Object.keys(session?.data)) {
+            debugger
+            handleRoleWiseRouting(session?.data?.role);
+        }
+    }, [session]);
+
+    const handleLogin = async (e) => {
         e.preventDefault();
         // Handle login logic here
+
+        const result = await signIn('credentials', {
+            email: email,
+            password: password,
+            redirect: false
+        });
+
+        if (result.error) {
+            setError({ ...error, wrongPassWord: result.error, statusOfError: true, wrongEmail: '' });
+        } else {
+            setError({ ...error, wrongPassWord: "", statusOfError: false, wrongEmail: '' });
+        }
     };
+
+    const handleRoleWiseRouting = useCallback((role) => {
+        if (role === 'USER') {
+            router.push('/')
+        }
+    }, [router]);
 
     return (
         <div className="flex justify-center items-center min-h-full my-40">
@@ -18,7 +50,7 @@ const Login = () => {
                 <h2 className="text-5xl font-normal mb-6 text-center text-gray-900">Login</h2>
                 <form onSubmit={handleLogin}>
                     <div className="mb-4">
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email address</label>
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 required">Email</label>
                         <input
                             type="email"
                             id="email"
@@ -30,7 +62,7 @@ const Login = () => {
                         />
                     </div>
                     <div className="mb-6">
-                        <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+                        <label htmlFor="password" className="block text-sm font-medium text-gray-700 required">Password</label>
                         <input
                             type="password"
                             id="password"

@@ -2,10 +2,11 @@
 
 import Image from 'next/image';
 import Link from "next/link";
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { FaFacebook, FaInstagram, FaLinkedin, FaSearch, FaTwitter, FaUser } from 'react-icons/fa';
 import MenuBarsIcon from '../../../public/icons/MenuBarsIcon.svg';
+import raze from '../.././../public/images/raze.png';
 
 const allNavItems = [
     { category: 'All Products', href: '/all-products' },
@@ -15,6 +16,7 @@ const allNavItems = [
 
 const Navbar = () => {
     const pathname = usePathname();
+    const router = useRouter();
     const [expandMobileMenu, setExpandMobileMenu] = useState(false);
     const [scrolled, setScrolled] = useState(false);
 
@@ -49,8 +51,13 @@ const Navbar = () => {
 
                 {/* Logo and Slogan */}
                 <div className="flex-1 flex flex-col justify-center items-center md:w-auto">
-                    <div className="text-[24px] font-bold">R A Z E</div>
-                    <span className="text-[8px]">Breaking Boundaries</span>
+                    {/* <div className="text-[24px] font-bold">R A Z E</div> */}
+                    <Image
+                        src={raze} height={120} width={130}
+                        className='cursor-pointer'
+                        onClick={() => router.push('/')}
+                    />
+                    <span className="text-[10px]">Breaking Boundaries</span>
                 </div>
 
                 {/* Search and User Icons */}

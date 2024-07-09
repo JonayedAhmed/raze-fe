@@ -21,7 +21,7 @@ const RegisterPage = () => {
                 <h2 className="text-5xl font-normal mb-6 text-center text-gray-900">Register</h2>
                 <form onSubmit={handleRegister}>
                     <div className="mb-4">
-                        <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">First Name</label>
+                        <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 required">First Name</label>
                         <input
                             type="text"
                             id="firstName"
@@ -45,7 +45,7 @@ const RegisterPage = () => {
                         />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email address</label>
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 required">Email address</label>
                         <input
                             type="email"
                             id="email"
@@ -57,7 +57,7 @@ const RegisterPage = () => {
                         />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+                        <label htmlFor="password" className="block text-sm font-medium text-gray-700 required">Password</label>
                         <input
                             type="password"
                             id="password"
@@ -69,7 +69,7 @@ const RegisterPage = () => {
                         />
                     </div>
                     <div className="mb-6">
-                        <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">Confirm Password</label>
+                        <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 required">Confirm Password</label>
                         <input
                             type="password"
                             id="confirmPassword"

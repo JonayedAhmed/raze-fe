@@ -1,7 +1,8 @@
+import Footer from "@/common/footer/Footer";
+import SecondaryNavbar from "@/common/navbar/SecondaryNavbar";
+import { SessionProvider } from "next-auth/react";
 import { Inter } from "next/font/google";
 import "../globals.css";
-import SecondaryNavbar from "@/common/navbar/SecondaryNavbar";
-import Footer from "@/common/footer/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,14 +12,16 @@ export const metadata = {
 };
 
 
-export default function LoginLayout({ children }) {
+export default function LoginLayout({ children, session }) {
     return (
         <html lang="en">
             <body className={inter.className}>
                 <SecondaryNavbar />
-                <main className="mt-28">
-                    {children}
-                </main>
+                <SessionProvider session={session}>
+                    <main className="mt-28">
+                        {children}
+                    </main>
+                </SessionProvider>
                 <Footer />
             </body>
         </html>

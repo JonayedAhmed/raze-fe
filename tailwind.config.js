@@ -1,3 +1,5 @@
+const customPlugin = require('./tailwind-plugins');
+
 // tailwind.config.js
 module.exports = {
   darkMode: ["class"],
@@ -76,5 +78,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), customPlugin],
 }
