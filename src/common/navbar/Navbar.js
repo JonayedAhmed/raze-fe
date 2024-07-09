@@ -1,12 +1,13 @@
 "use client";
 
+import { signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from "next/link";
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { FaFacebook, FaInstagram, FaLinkedin, FaSearch, FaTwitter, FaUser } from 'react-icons/fa';
 import MenuBarsIcon from '../../../public/icons/MenuBarsIcon.svg';
-import raze from '../.././../public/images/raze.png';
+import raze from '../../../public/images/raze.png';
 
 const allNavItems = [
     { category: 'All Products', href: '/all-products' },
@@ -17,8 +18,11 @@ const allNavItems = [
 const Navbar = () => {
     const pathname = usePathname();
     const router = useRouter();
+    const { data: session } = useSession();
+
     const [expandMobileMenu, setExpandMobileMenu] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [showDropdown, setShowDropdown] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -32,38 +36,63 @@ const Navbar = () => {
         };
     }, []);
 
+    const logoutUser = () => {
+        localStorage.clear();
+
+        // Clear cookies
+        document.cookie.split(";").forEach(cookie => {
+            const [name] = cookie.split("=");
+            document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
+        });
+
+        // Sign out using next-auth and redirect to login page
+        signOut({ callbackUrl: '/login' });
+    };
+
     return (
         <div className={`fixed top-0 w-full z-10 transition-all duration-300 ${scrolled ? 'bg-gray-900 text-white' : 'bg-transparent text-white'}`}>
             <div className={`h-12 md:h-20 flex md:justify-between items-center px-4 ${scrolled ? 'border-b border-gray-700' : ''}`}>
-
-                {/* Mobile Menu Icon */}
                 <div className="md:hidden w-[5%]" onClick={() => setExpandMobileMenu(!expandMobileMenu)}>
-                    <Image src={MenuBarsIcon} alt="Menu Icon" />
+                    <Image src={MenuBarsIcon} alt="Menu Icon" priority />
                 </div>
-
-                {/* Social Media Icons (only for md and above) */}
                 <div className="hidden md:flex items-center space-x-10">
                     <a href="#facebook" className="text-white hover:text-red-600"><FaFacebook size={20} /></a>
                     <a href="#twitter" className="text-white hover:text-red-600"><FaTwitter size={20} /></a>
                     <a href="#instagram" className="text-white hover:text-red-600"><FaInstagram size={20} /></a>
                     <a href="#linkedin" className="text-white hover:text-red-600"><FaLinkedin size={20} /></a>
                 </div>
-
-                {/* Logo and Slogan */}
                 <div className="flex-1 flex flex-col justify-center items-center md:w-auto">
-                    {/* <div className="text-[24px] font-bold">R A Z E</div> */}
                     <Image
-                        src={raze} height={120} width={130}
+                        src={raze}
+                        height={120}
+                        width={130}
+                        alt="Raze Logo"
                         className='cursor-pointer'
                         onClick={() => router.push('/')}
+                        priority
                     />
                     <span className="text-[10px]">Breaking Boundaries</span>
                 </div>
-
-                {/* Search and User Icons */}
-                <div className="flex items-center space-x-10">
+                <div className="relative flex items-center space-x-10">
                     <a href="#search" className="text-white hover:text-gray-400"><FaSearch size={20} /></a>
-                    <a href="/login" className="text-white hover:text-gray-400"><FaUser size={20} /></a>
+                    {session ? (
+                        <div className="relative">
+                            <FaUser size={20} className="text-white hover:text-gray-400 cursor-pointer" onClick={() => setShowDropdown(!showDropdown)} />
+                            {showDropdown && (
+                                <div className='absolute top-14 right-0 bg-white text-black w-[200px] shadow-lg rounded-sm'>
+                                    <div className='flex items-center gap-5 px-4 py-2 text-primary font-bold cursor-pointer' onClick={() => router.push('/profile')}>
+                                        Profile
+                                    </div>
+                                    <hr />
+                                    <div className='flex items-center gap-5 px-4 py-2 text-[rgb(99,115,129)] font-bold cursor-pointer' onClick={logoutUser}>
+                                        Logout
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    ) : (
+                        <a href="/login" className="text-white hover:text-gray-400"><FaUser size={20} /></a>
+                    )}
                 </div>
             </div>
 

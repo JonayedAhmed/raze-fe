@@ -16,7 +16,6 @@ const Login = () => {
 
     useEffect(() => {
         if (session?.data && Object.keys(session?.data)) {
-            debugger
             handleRoleWiseRouting(session?.data?.role);
         }
     }, [session]);

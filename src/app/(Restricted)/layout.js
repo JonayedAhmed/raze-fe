@@ -16,8 +16,8 @@ export default function LoginLayout({ children, session }) {
     return (
         <html lang="en">
             <body className={inter.className}>
-                <SecondaryNavbar />
                 <SessionProvider session={session}>
+                    <SecondaryNavbar />
                     <main className="mt-28">
                         {children}
                     </main>
