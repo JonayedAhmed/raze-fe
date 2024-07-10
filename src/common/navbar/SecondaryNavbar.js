@@ -55,7 +55,7 @@ const Navbar = () => {
                 </div>
 
                 {/* Logo and Slogan */}
-                <div className="flex-1 flex flex-col justify-center items-center md:w-auto">
+                <div className="flex-1 flex flex-col justify-center items-center pl-20 md:pl-0 md:pr-28">
                     <Image
                         src={raze}
                         height={120}

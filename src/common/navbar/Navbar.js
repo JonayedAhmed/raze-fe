@@ -61,7 +61,7 @@ const Navbar = () => {
                     <a href="#instagram" className="text-white hover:text-red-600"><FaInstagram size={20} /></a>
                     <a href="#linkedin" className="text-white hover:text-red-600"><FaLinkedin size={20} /></a>
                 </div>
-                <div className="flex-1 flex flex-col justify-center items-center md:w-auto">
+                <div className="flex-1 flex flex-col justify-center items-center pl-20 md:pl-0 md:pr-28">
                     <Image
                         src={raze}
                         height={120}
@@ -73,6 +73,7 @@ const Navbar = () => {
                     />
                     <span className="text-[10px]">Breaking Boundaries</span>
                 </div>
+
                 <div className="relative flex items-center space-x-10">
                     <a href="#search" className="text-white hover:text-gray-400"><FaSearch size={20} /></a>
                     {session ? (
