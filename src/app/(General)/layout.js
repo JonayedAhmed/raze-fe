@@ -1,8 +1,10 @@
-import { Inter } from "next/font/google";
-import "../globals.css";
-import Navbar from "@/common/navbar/Navbar";
 import Footer from "@/common/footer/Footer";
+import Navbar from "@/common/navbar/Navbar";
 import { SessionProvider } from "next-auth/react";
+import { Inter } from "next/font/google";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import "../globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,6 +21,7 @@ export default function RootLayout({ children, session }) {
           <Navbar />
           <main>
             {children}
+            <ToastContainer />
           </main>
         </SessionProvider>
         <Footer />

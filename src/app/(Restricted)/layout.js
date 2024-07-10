@@ -2,6 +2,8 @@ import Footer from "@/common/footer/Footer";
 import SecondaryNavbar from "@/common/navbar/SecondaryNavbar";
 import { SessionProvider } from "next-auth/react";
 import { Inter } from "next/font/google";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "../globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -20,6 +22,7 @@ export default function LoginLayout({ children, session }) {
                     <SecondaryNavbar />
                     <main className="mt-28">
                         {children}
+                        <ToastContainer />
                     </main>
                 </SessionProvider>
                 <Footer />

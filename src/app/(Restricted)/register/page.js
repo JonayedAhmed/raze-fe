@@ -2,7 +2,9 @@
 
 import { registerUser } from '@/app/api/auth/POST';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 const initialValue = {
     fullName: '',
@@ -13,6 +15,8 @@ const initialValue = {
 }
 
 const RegisterPage = () => {
+
+    const router = useRouter();
     const [values, setValues] = useState({ ...initialValue });
     const [errors, setErrors] = useState({});
 
@@ -32,9 +36,10 @@ const RegisterPage = () => {
         if (validate()) {
             registerUser(values).then(response => {
                 if (response?.[0]) {
-
+                    toast.success("Registered Successfully!");
+                    router.push('/login');
                 } else {
-
+                    toast.error(response?.[1]);
                 }
             })
         } else {
