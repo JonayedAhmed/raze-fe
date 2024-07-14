@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from "next/link";
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { FaFacebook, FaInstagram, FaLinkedin, FaSearch, FaTwitter, FaUser } from 'react-icons/fa';
+import { FaFacebook, FaInstagram, FaLinkedin, FaSearch, FaTwitter, FaUser, FaTachometerAlt, FaClipboardList, FaSignOutAlt } from 'react-icons/fa';
 import MenuBarsIcon from '../../../public/icons/MenuBarsIcon.svg';
 import raze from '../../../public/images/raze.png';
 
@@ -15,6 +15,35 @@ const allNavItems = [
     { category: 'Cargo', href: '/cargo' }
 ];
 
+const styleConfig = [
+    {
+        routes: ['/login'], // Always bg-gray-900
+        navbarStyle: 'bg-gray-900 text-white',
+        containerStyle: 'border-b border-gray-700',
+        fixedStyle: 'bg-gray-900 text-white',
+    },
+    {
+        routes: ['/'], // Transparent at first, bg-gray-900 on scroll
+        navbarStyle: 'bg-transparent text-white',
+        containerStyle: '',
+        fixedStyle: 'bg-gray-900 text-white',
+    }
+];
+
+const getStyleForRoute = (pathname) => {
+    for (const style of styleConfig) {
+        if (style.routes.includes(pathname)) {
+            return style;
+        }
+    }
+    // Default style if no route matches
+    return {
+        navbarStyle: 'bg-gray-900 text-white',
+        containerStyle: 'border-b border-gray-700',
+        fixedStyle: 'bg-gray-900 text-white',
+    };
+};
+
 const Navbar = () => {
     const pathname = usePathname();
     const router = useRouter();
@@ -23,6 +52,8 @@ const Navbar = () => {
     const [expandMobileMenu, setExpandMobileMenu] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
+
+    const { navbarStyle, containerStyle, fixedStyle } = getStyleForRoute(pathname);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -50,8 +81,8 @@ const Navbar = () => {
     };
 
     return (
-        <div className={`fixed top-0 w-full z-10 transition-all duration-300 ${scrolled ? 'bg-gray-900 text-white' : 'bg-transparent text-white'}`}>
-            <div className={`h-12 md:h-20 flex md:justify-between items-center px-4 ${scrolled ? 'border-b border-gray-700' : ''}`}>
+        <div className={`fixed top-0 w-full z-10 transition-all duration-300 ${scrolled ? fixedStyle : navbarStyle}`}>
+            <div className={`h-12 md:h-20 flex md:justify-between items-center px-4 ${scrolled ? containerStyle : ''}`}>
                 <div className="md:hidden w-[5%]" onClick={() => setExpandMobileMenu(!expandMobileMenu)}>
                     <Image src={MenuBarsIcon} alt="Menu Icon" priority />
                 </div>
@@ -81,12 +112,19 @@ const Navbar = () => {
                             <FaUser size={20} className="text-white hover:text-gray-400 cursor-pointer" onClick={() => setShowDropdown(!showDropdown)} />
                             {showDropdown && (
                                 <div className='absolute top-14 right-0 bg-white text-black w-[200px] shadow-lg rounded-sm'>
-                                    <div className='flex items-center gap-5 px-4 py-2 text-primary font-bold cursor-pointer' onClick={() => router.push('/profile')}>
-                                        Profile
+                                    <div className='flex justify-center gap-5 px-4 py-2 text-primary font-bold cursor-pointer' onClick={() => router.push('/user/profile')}>
+                                        {session?.fullName?.split(" ")?.[0]}
+                                    </div>
+                                    <div className='flex items-center gap-5 px-4 py-2 text-primary cursor-pointer' onClick={() => router.push('/user/dashboard')}>
+                                        <FaTachometerAlt size={16} /> Dashboard
                                     </div>
                                     <hr />
-                                    <div className='flex items-center gap-5 px-4 py-2 text-[rgb(99,115,129)] font-bold cursor-pointer' onClick={logoutUser}>
-                                        Logout
+                                    <div className='flex items-center gap-5 px-4 py-2 text-primary cursor-pointer' onClick={() => router.push('/user/orders')}>
+                                        <FaClipboardList size={16} /> My Orders
+                                    </div>
+                                    <hr />
+                                    <div className='flex items-center gap-5 px-4 py-2 text-[rgb(99,115,129)] cursor-pointer' onClick={logoutUser}>
+                                        <FaSignOutAlt size={16} /> Logout
                                     </div>
                                 </div>
                             )}

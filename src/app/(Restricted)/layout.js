@@ -1,5 +1,5 @@
 import Footer from "@/common/footer/Footer";
-import SecondaryNavbar from "@/common/navbar/SecondaryNavbar";
+import Navbar from "@/common/navbar/Navbar";
 import { SessionProvider } from "next-auth/react";
 import { Inter } from "next/font/google";
 import { ToastContainer } from 'react-toastify';
@@ -19,8 +19,8 @@ export default function LoginLayout({ children, session }) {
         <html lang="en">
             <body className={inter.className}>
                 <SessionProvider session={session}>
-                    <SecondaryNavbar />
-                    <main className="mt-28">
+                    <Navbar />
+                    <main className="mt-36">
                         {children}
                         <ToastContainer />
                     </main>

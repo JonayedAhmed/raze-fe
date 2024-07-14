@@ -21,7 +21,7 @@ export default function RootLayout({ children, session }) {
           <Navbar />
           <main>
             {children}
-            <ToastContainer />
+            <ToastContainer theme="dark" />
           </main>
         </SessionProvider>
         <Footer />
