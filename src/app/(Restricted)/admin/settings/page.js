@@ -2,7 +2,7 @@
 
 import AdminNavbar from '@/common/navbar/AdminNavbar';
 import { useState } from 'react';
-import { FaUser, FaLock, FaBell, FaShieldAlt } from 'react-icons/fa';
+import { FaBell, FaLock, FaShieldAlt, FaUser } from 'react-icons/fa';
 
 const SettingsPage = () => {
     const [openSection, setOpenSection] = useState('');
@@ -24,7 +24,7 @@ const SettingsPage = () => {
                             className="flex items-center justify-between cursor-pointer"
                             onClick={() => toggleSection('profile')}
                         >
-                            <h2 className="text-2xl font-semibold flex items-center">
+                            <h2 className="text-xl font-semibold flex items-center">
                                 <FaUser className="mr-3" /> Profile
                             </h2>
                             <span>{openSection === 'profile' ? '-' : '+'}</span>
@@ -50,7 +50,7 @@ const SettingsPage = () => {
                             className="flex items-center justify-between cursor-pointer"
                             onClick={() => toggleSection('account')}
                         >
-                            <h2 className="text-2xl font-semibold flex items-center">
+                            <h2 className="text-xl font-semibold flex items-center">
                                 <FaLock className="mr-3" /> Account
                             </h2>
                             <span>{openSection === 'account' ? '-' : '+'}</span>
@@ -76,7 +76,7 @@ const SettingsPage = () => {
                             className="flex items-center justify-between cursor-pointer"
                             onClick={() => toggleSection('notifications')}
                         >
-                            <h2 className="text-2xl font-semibold flex items-center">
+                            <h2 className="text-xl font-semibold flex items-center">
                                 <FaBell className="mr-3" /> Notifications
                             </h2>
                             <span>{openSection === 'notifications' ? '-' : '+'}</span>
@@ -102,7 +102,7 @@ const SettingsPage = () => {
                             className="flex items-center justify-between cursor-pointer"
                             onClick={() => toggleSection('privacy')}
                         >
-                            <h2 className="text-2xl font-semibold flex items-center">
+                            <h2 className="text-xl font-semibold flex items-center">
                                 <FaShieldAlt className="mr-3" /> Privacy
                             </h2>
                             <span>{openSection === 'privacy' ? '-' : '+'}</span>
