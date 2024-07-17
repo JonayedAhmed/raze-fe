@@ -11,15 +11,15 @@ const UserProfile = async () => {
 
     return (
         <div className='flex'>
-            <div className='w-1/6 flex justify-end'>
+            <div>
                 <UserNavbar />
             </div>
-            <div className='w-5/6 px-20'>
+            <div className='px-20'>
 
                 <>
                     <div className='mb-5 text-lg font-medium'>My Profile</div>
                     <div className='flex gap-5 items-center mb-12'>
-                        <Image src={DummyUser} height={80} width={80} />
+                        <Image src={DummyUser} height={80} width={80} alt='user-image' />
                         <span className='text-lg font-medium'>Place Image</span>
                     </div>
                 </>

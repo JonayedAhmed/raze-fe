@@ -39,7 +39,9 @@ const Login = () => {
 
     const handleRoleWiseRouting = useCallback((role) => {
         if (role === 'USER') {
-            router.push('/')
+            router.push('/user/dashboard')
+        } else if (role === 'ADMIN') {
+            router.push('admin/dashboard')
         }
     }, [router]);
 

@@ -1,16 +1,15 @@
 'use client'
 
-import { signOut } from 'next-auth/react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { FaSignOutAlt, FaUser } from 'react-icons/fa';
-import { MdDashboard, MdListAlt } from 'react-icons/md';
+import { FaBoxOpen, FaChartLine, FaCog, FaHome, FaSignOutAlt, FaUsers } from 'react-icons/fa';
+import { signOut } from 'next-auth/react';
 
-const UserNavbar = () => {
+const AdminNavbar = () => {
 
     const pathname = usePathname();
 
-    const logoutUser = () => {
+    const logoutAdmin = () => {
         localStorage.clear();
 
         // Clear cookies
@@ -24,11 +23,14 @@ const UserNavbar = () => {
     };
 
     const menuItems = [
-        { href: '/user/dashboard', label: 'Dashboard', icon: <MdDashboard size={20} /> },
-        { href: '/user/orders', label: 'Orders', icon: <MdListAlt size={20} /> },
-        { href: '/user/profile', label: 'My Profile', icon: <FaUser size={20} /> },
-        { href: '#', label: 'Logout', icon: <FaSignOutAlt size={20} />, onClick: logoutUser, className: 'text-[rgb(99,115,129)] hover:text-red-600' },
+        { href: '/admin/dashboard', label: 'Home', icon: <FaHome className="mr-3" /> },
+        { href: '/admin/products', label: 'Products', icon: <FaBoxOpen className="mr-3" /> },
+        { href: '/admin/users', label: 'Users', icon: <FaUsers className="mr-3" /> },
+        { href: '/admin/reports', label: 'Reports', icon: <FaChartLine className="mr-3" /> },
+        { href: '/admin/settings', label: 'Settings', icon: <FaCog className="mr-3" /> },
+        { href: '#', label: 'Logout', icon: <FaSignOutAlt size={20} />, onClick: logoutAdmin, className: 'text-[rgb(99,115,129)] hover:text-red-600' },
     ];
+
 
     return (
         <div className="h-screen w-64 p-4 shadow-lg">
@@ -53,4 +55,4 @@ const UserNavbar = () => {
     );
 };
 
-export default UserNavbar;
+export default AdminNavbar;

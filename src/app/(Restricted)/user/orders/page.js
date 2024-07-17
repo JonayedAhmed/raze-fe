@@ -18,12 +18,12 @@ const UserDashboard = () => {
 
     return (
         <div className='flex'>
-            <div className='w-1/6 flex justify-end'>
+            <div>
                 <UserNavbar />
             </div>
-            <div className='w-5/6 px-20'>
+            <div className='px-20'>
                 <div className='flex gap-5 items-center mb-12'>
-                    <Image src={DummyUser} height={60} width={60} />
+                    <Image src={DummyUser} height={60} width={60} alt='user-image' />
                     {session?.fullName ? session?.fullName : ''}
                 </div>
 
