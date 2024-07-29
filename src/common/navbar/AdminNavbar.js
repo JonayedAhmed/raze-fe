@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { FaBoxOpen, FaChartLine, FaCog, FaHome, FaSignOutAlt, FaUsers } from 'react-icons/fa';
+import { FaBoxOpen, FaChartLine, FaCog, FaHome, FaSignOutAlt, FaUsers, FaSitemap } from 'react-icons/fa';
 import { signOut } from 'next-auth/react';
 
 const AdminNavbar = () => {
@@ -27,10 +27,10 @@ const AdminNavbar = () => {
         { href: '/admin/products', label: 'Products', icon: <FaBoxOpen className="mr-3" /> },
         { href: '/admin/users', label: 'Users', icon: <FaUsers className="mr-3" /> },
         { href: '/admin/reports', label: 'Reports', icon: <FaChartLine className="mr-3" /> },
+        { href: '/admin/segments', label: 'Segments', icon: <FaSitemap className="mr-3" /> },
         { href: '/admin/settings', label: 'Settings', icon: <FaCog className="mr-3" /> },
         { href: '#', label: 'Logout', icon: <FaSignOutAlt size={20} />, onClick: logoutAdmin, className: 'text-[rgb(99,115,129)] hover:text-red-600' },
     ];
-
 
     return (
         <div className="h-screen w-64 p-4 shadow-lg">
